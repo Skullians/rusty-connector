@@ -19,6 +19,7 @@ import java.util.UUID;
 import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.serializer;
 
 public class FabricServerAdapter extends ServerAdapter {
+
     private final MinecraftServer server;
     private final CommandManager<CommandClient> commandManager;
 

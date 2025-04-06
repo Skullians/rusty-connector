@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class FabricRustyConnector implements DedicatedServerModInitializer {
+
     private final ModuleLoader loader = new ModuleLoader();
     private final Gson gson = new Gson();
     private FabricServerCommandManager<CommandClient> commandManager;
@@ -230,6 +231,7 @@ public class FabricRustyConnector implements DedicatedServerModInitializer {
                 throw new RuntimeException(e);
             }
         });
+
         ServerLifecycleEvents.SERVER_STOPPING.register(s -> {
             try {
                 RustyConnector.unregister();
