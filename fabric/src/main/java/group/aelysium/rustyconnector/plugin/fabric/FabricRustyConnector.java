@@ -36,6 +36,7 @@ import net.kyori.adventure.text.JoinConfiguration;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minecraft.text.Text;
 import org.incendo.cloud.SenderMapper;
 import org.incendo.cloud.annotations.AnnotationParser;
@@ -43,15 +44,15 @@ import org.incendo.cloud.execution.ExecutionCoordinator;
 import org.incendo.cloud.fabric.FabricServerCommandManager;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class FabricRustyConnector implements DedicatedServerModInitializer {
     private final ModuleLoader loader = new ModuleLoader();
     private final Gson gson = new Gson();
     private FabricServerCommandManager<CommandClient> commandManager;
+
+    public static LegacyComponentSerializer serializer = LegacyComponentSerializer.legacySection();
     
     @Override
     public void onInitializeServer() {

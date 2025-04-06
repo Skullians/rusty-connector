@@ -4,8 +4,8 @@ import group.aelysium.rustyconnector.RC;
 import group.aelysium.rustyconnector.common.errors.Error;
 import group.aelysium.rustyconnector.common.util.CommandClient;
 import group.aelysium.rustyconnector.server.ServerAdapter;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import net.minecraft.text.Text;
 import org.incendo.cloud.CommandManager;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.server.MinecraftServer;
@@ -15,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+
+import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.serializer;
 
 public class FabricServerAdapter extends ServerAdapter {
     private final MinecraftServer server;
@@ -107,7 +109,8 @@ public class FabricServerAdapter extends ServerAdapter {
             if(player == null) return;
             if(player.isDisconnected()) return;
 
-            ((Audience) player).sendMessage(message);
+            String legacy = serializer.serialize(message);
+            player.sendMessage(Text.literal(legacy));
         } catch (Exception e) {
             RC.Error(Error.from(e));
         }
@@ -120,6 +123,7 @@ public class FabricServerAdapter extends ServerAdapter {
     
     @Override
     public void log(@NotNull Component message) {
-        ((Audience) this.server).sendMessage(message);
+        String legacy = serializer.serialize(message);
+        this.server.sendMessage(Text.literal(legacy));
     }
 }

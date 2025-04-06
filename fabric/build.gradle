@@ -47,8 +47,8 @@ dependencies {
     include implementation("org.incendo:cloud-annotations:2.0.0")
 
     // Kyori Components
-    modCompileOnly("net.kyori:adventure-platform-fabric:6.1.0")
-    include("net.kyori:adventure-platform-fabric:6.1.0")
+    include(implementation("net.kyori:adventure-api:4.20.0"))
+    include(implementation("net.kyori:adventure-text-serializer-legacy:4.20.0"))
 
     // Part of the shadowjar workaround so we get to not use shadowjar
     zip implementation(project(path: ':serverCommon', configuration: 'default'))
