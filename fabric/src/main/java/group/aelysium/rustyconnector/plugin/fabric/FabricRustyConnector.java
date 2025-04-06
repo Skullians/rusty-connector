@@ -36,6 +36,7 @@ import net.kyori.adventure.text.JoinConfiguration;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.kyori.adventure.text.serializer.ansi.ANSIComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minecraft.text.Text;
 import org.incendo.cloud.SenderMapper;
@@ -53,7 +54,8 @@ public class FabricRustyConnector implements DedicatedServerModInitializer {
     private final Gson gson = new Gson();
     private FabricServerCommandManager<CommandClient> commandManager;
 
-    public static LegacyComponentSerializer serializer = LegacyComponentSerializer.legacySection();
+    public static LegacyComponentSerializer legacySerializer = LegacyComponentSerializer.legacySection();
+    public static ANSIComponentSerializer ansiSerializer = ANSIComponentSerializer.ansi();
     
     @Override
     public void onInitializeServer() {

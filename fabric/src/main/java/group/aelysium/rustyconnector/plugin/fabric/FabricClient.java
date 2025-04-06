@@ -9,7 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.serializer;
+import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.ansiSerializer;
+import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.legacySerializer;
 
 public interface FabricClient {
 
@@ -19,11 +20,11 @@ public interface FabricClient {
         }
 
         public void send(Component message) {
-            String legacy = serializer.serialize(message);
+            String legacy = legacySerializer.serialize(message);
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
         public void send(Error error) {
-            String legacy = serializer.serialize(error.toComponent());
+            String legacy = legacySerializer.serialize(error.toComponent());
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
         
@@ -44,11 +45,11 @@ public interface FabricClient {
         }
 
         public void send(Component message) {
-            String legacy = serializer.serialize(message);
+            String legacy = ansiSerializer.serialize(message);
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
         public void send(Error error) {
-            String legacy = serializer.serialize(error.toComponent());
+            String legacy = ansiSerializer.serialize(error.toComponent());
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
     }
@@ -59,11 +60,11 @@ public interface FabricClient {
         }
 
         public void send(Component message) {
-            String legacy = serializer.serialize(message);
+            String legacy = legacySerializer.serialize(message);
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
         public void send(Error error) {
-            String legacy = serializer.serialize(error.toComponent());
+            String legacy = legacySerializer.serialize(error.toComponent());
             ((ServerCommandSource) this.source).sendMessage(Text.literal(legacy));
         }
     }

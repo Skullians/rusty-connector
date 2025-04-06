@@ -16,7 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.serializer;
+import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.legacySerializer;
+import static group.aelysium.rustyconnector.plugin.fabric.FabricRustyConnector.ansiSerializer;
 
 public class FabricServerAdapter extends ServerAdapter {
 
@@ -110,7 +111,7 @@ public class FabricServerAdapter extends ServerAdapter {
             if(player == null) return;
             if(player.isDisconnected()) return;
 
-            String legacy = serializer.serialize(message);
+            String legacy = legacySerializer.serialize(message);
             player.sendMessage(Text.literal(legacy));
         } catch (Exception e) {
             RC.Error(Error.from(e));
@@ -124,7 +125,7 @@ public class FabricServerAdapter extends ServerAdapter {
     
     @Override
     public void log(@NotNull Component message) {
-        String legacy = serializer.serialize(message);
+        String legacy = ansiSerializer.serialize(message);
         this.server.sendMessage(Text.literal(legacy));
     }
 }
